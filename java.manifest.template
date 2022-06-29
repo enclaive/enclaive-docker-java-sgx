@@ -1,0 +1,52 @@
+loader.entrypoint = "file:{{ gramine.libos }}"
+libos.entrypoint = "/usr/lib/jvm/java-17-openjdk-amd64/bin/java"
+loader.log_level = "{{ log_level }}"
+loader.argv_src_file = "file:/app/jvm_args.txt"
+
+loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
+
+sgx.debug = false
+sgx.nonpie_binary = true
+sgx.thread_num = 64
+sgx.enclave_size = "8G"
+
+sgx.trusted_files = [
+  "file:{{ gramine.libos }}",
+  "file:/app/enclave.jar",
+  "file:{{ gramine.runtimedir() }}/",
+  "file:/usr/lib/jvm/java-17-openjdk-amd64/",
+  "file:/usr/{{ arch_libdir }}/",
+  "file:{{ arch_libdir }}/",
+  "file:/usr/local/{{ arch_libdir }}/",
+  "file:/app/jvm_args.txt",
+]
+
+[[fs.mounts]]
+type = "chroot"
+path = "/lib"
+uri  = "file:{{ gramine.runtimedir() }}"
+
+[[fs.mounts]]
+type = "chroot"
+path = "{{ arch_libdir }}"
+uri  = "file:{{ arch_libdir }}"
+
+[[fs.mounts]]
+type = "chroot"
+path = "/usr/{{ arch_libdir }}"
+uri  = "file:/usr/{{ arch_libdir }}"
+
+[[fs.mounts]]
+type = "chroot"
+path = "/usr/local/{{ arch_libdir }}"
+uri  = "file:/usr/local/{{ arch_libdir }}"
+
+[[fs.mounts]]
+type = "chroot"
+path = "/usr/lib/jvm/java-17-openjdk-amd64"
+uri  = "file:/usr/lib/jvm/java-17-openjdk-amd64"
+
+[[fs.mounts]]
+type = "chroot"
+path = "/app/enclave.jar"
+uri  = "file:/app/enclave.jar"

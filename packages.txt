@@ -1,0 +1,4 @@
+libprotobuf-c1 
+vim
+errno
+openjdk-17-jre-headless
