@@ -1,19 +1,19 @@
+# Gradle build stage
 FROM gradle:7.4-jdk17 AS builder
 
 COPY ./src/project /home/gradle
 
 RUN gradle build jar && cp /home/gradle/build/libs/*.jar /enclave.jar
 
+# Enclave image build stage
 FROM enclaive/gramine-os:latest
 
-COPY ./packages.txt .
-
 RUN apt-get update \
-    && xargs -a packages.txt -r apt-get install -y \
-    && rm -rf packages.txt /var/lib/apt/lists/*
+    && apt-get install -y libprotobuf-c1 openjdk-17-jre-headless \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY ./java.manifest.template /app/
 COPY --from=builder /enclave.jar /app/
+COPY ./java.manifest.template /app/
 COPY ./entrypoint.sh /app/
 
 WORKDIR /app
