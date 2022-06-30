@@ -1,13 +1,11 @@
 version: '2'
 
 services:
-  gramine-sdk:
-    image: mboettger/gramine-custom:latest
-    container_name: "gramine-custom"
+  gramine-jvm:
+    image: mboettger/gramine-jvm:latest
+    container_name: "gramine-jvm"
     build: .
     volumes:
       - /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket
     devices:
       - "/dev/sgx_enclave:/dev/sgx_enclave"
-    stdin_open: true              # docker run -i
-    tty: true                     # docker run -t
