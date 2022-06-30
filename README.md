@@ -21,7 +21,7 @@ This repo contains a small demo of running a JVM inside an SGX enclave using Gra
 
 ![Enclave log][log-img]
 
-Confidential compute is a fast-growing space. Developers will face growing pressure to move applications to a zero-trust infrastructure. Using Gramine, developers are able to deploy their existing source code inside an enclave instead of doing a full rewrite.
+Confidential computing is a fast-growing space. Developers will face growing pressure to move applications to a zero-trust infrastructure. Using Gramine, developers can deploy their existing source code inside an enclave instead of doing a full rewrite.
 
 This PoC has its origin in the system security lecture by [@sebastiangajek](https://github.com/sebastiangajek) at Flensburg University of Applied Sciences.
 
@@ -53,22 +53,22 @@ docker-compose up
 ## Gramine JVM Image structure
 
 ### Build
-The Docker image build consists of two stages. The first ("builder") stage uses Gradle to build the gradle-based [Java project](src/project) and creates a runnable JAR.
+The Docker image build consists of two stages. The first ("builder") stage uses Gradle to build the Gradle-based [Java project](src/project) and creates a runnable JAR.
 
 The second ("gramine") stage gathers all the necessary resources and generates and signs the manifest based on the [existing template](java.manifest.template).
 
 ### Run
-On container startup the [entrypoint script](entrypoint.sh) acquires the necessary token and launches the enclave.
+On container startup, the [entrypoint script](entrypoint.sh) acquires the necessary token and launches the enclave.
 
 
 
 ## Modifying the PoC to run a different JVM-based application
 
 ### Gradle-based JVM application
-Replace the `project` folder, located at `src/project`, with your own Gradle-based project and change the referenced folders and gradle tasks inside the builder stage in the Dockerfile accordingly.
+Replace the `project` folder, at `src/project`, with your Gradle-based project and change the referenced folders and Gradle tasks inside the builder stage in the Dockerfile accordingly.
 
 ### Non-Gradle-based JVM application
-Replace the `project` folder, located at `src/project`, with your own JVM application project and exchange the builder stage inside the Dockerfile with your own needed build config. Make sure to copy the resulting jar to the root folder of your builder stage and for convenience name it `enclave.jar`. This way you most likely won´t have to touch the second stage at all.
+Replace the `project` folder, at `src/project`, with your JVM application project and exchange the builder stage inside the Dockerfile with your needed build config. Make sure to copy the resulting jar to the root folder of your builder stage and for convenience name it `enclave.jar`. This way you most likely won´t have to touch the second stage.
 
 
 ## License
