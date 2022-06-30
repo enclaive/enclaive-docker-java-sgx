@@ -96,7 +96,7 @@ This project greatly celebrates all contributions from the gramine team and the 
 [stars-shield]: https://img.shields.io/github/stars/mortenboettger/gramine-java-poc.svg?style=for-the-badge
 [stars-url]: https://github.com/mortenboettger/gramine-java-poc/stargazers
 [license-shield]: https://img.shields.io/github/license/mortenboettger/gramine-java-poc.svg?style=for-the-badge
-[license-url]: https://github.com/mortenboettger/gramine-java-poc/blob/master/LICENSE
+[license-url]: https://github.com/mortenboettger/gramine-java-poc/blob/main/LICENSE
 [last-commit-shield]:https://img.shields.io/github/last-commit/mortenboettger/gramine-java-poc/main.svg?style=for-the-badge
 [last-commit-url]: https://github.com/mortenboettger/gramine-java-poc/commits/main
 [log-img]: images/enclave_log.png
