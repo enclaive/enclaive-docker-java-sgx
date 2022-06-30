@@ -23,7 +23,7 @@ This repo contains a small demo of running a JVM inside an SGX enclave using Gra
 
 Confidential compute is a fast-growing space. Developers will face growing pressure to move applications to a zero-trust infrastructure. Using Gramine, developers are able to deploy their existing source code inside an enclave instead of doing a full rewrite.
 
-This PoC has its origin in the system security lecture by @sebastiangajek at Flensburg University of Applied Sciences.
+This PoC has its origin in the system security lecture by [@sebastiangajek](https://github.com/sebastiangajek) at Flensburg University of Applied Sciences.
 
 Experienced issues in this PoC:
 * Broken `EPOLL` support -> Webservers such as Netty fail to start
