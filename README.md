@@ -124,7 +124,7 @@ Use `docker run hello-world` to check if you can run docker (without sudo).
 <!-- GET THIS IMAGE -->
 ## Get this image
 
-The recommended way to get the enclaive Java-SGX Open Source Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/enclaive/rust-sgx).
+The recommended way to get the enclaive Java-SGX Open Source Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/enclaive/java-sgx).
 
 ```console
 docker pull enclaive/java-sgx:latest
