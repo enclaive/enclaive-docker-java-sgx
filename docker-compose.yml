@@ -1,11 +1,10 @@
 version: '2'
 
 services:
-  gramine-jvm:
-    image: mboettger/gramine-jvm:latest
-    container_name: "gramine-jvm"
+  java:
+    image: enclaive/java-sgx:latest
     build: .
-    volumes:
-      - /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket
     devices:
-      - "/dev/sgx_enclave:/dev/sgx_enclave"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+      - "/dev/sgx/enclave:/dev/sgx_enclave"
+      - "/dev/sgx_provision:/dev/sgx_provision"

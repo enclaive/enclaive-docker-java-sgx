@@ -3,18 +3,16 @@ libos.entrypoint = "/usr/lib/jvm/java-17-openjdk-amd64/bin/java"
 loader.log_level = "{{ log_level }}"
 loader.argv_src_file = "file:/app/jvm_args.txt"
 
-loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
+loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}"
 
 sgx.debug = false
-sgx.nonpie_binary = true
-sgx.thread_num = 64
-sgx.enclave_size = "8G"
+sgx.thread_num = 16
+sgx.enclave_size = "1G"
 
 sgx.trusted_files = [
   "file:{{ gramine.libos }}",
   "file:{{ gramine.runtimedir() }}/",
   "file:{{ arch_libdir }}/",
-  "file:/usr/{{ arch_libdir }}/",
   "file:/usr/lib/jvm/java-17-openjdk-amd64/",
   "file:/app/enclave.jar",
   "file:/app/jvm_args.txt",

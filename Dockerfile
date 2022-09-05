@@ -6,7 +6,7 @@ COPY ./src/project /home/gradle
 RUN gradle build jar && cp /home/gradle/build/libs/*.jar /enclave.jar
 
 # Enclave image build stage
-FROM enclaive/gramine-os:latest
+FROM enclaive/gramine-os:jammy-33576d39
 
 RUN apt-get update \
     && apt-get install -y libprotobuf-c1 openjdk-17-jre-headless \
@@ -18,7 +18,7 @@ COPY ./entrypoint.sh /app/
 
 WORKDIR /app
 
-RUN gramine-argv-serializer "/usr/lib/jvm/java-17-openjdk-amd64/bin/java" "-jar" "/app/enclave.jar" > jvm_args.txt
+RUN gramine-argv-serializer "/usr/lib/jvm/java-17-openjdk-amd64/bin/java" "-XX:CompressedClassSpaceSize=8m" "-XX:ReservedCodeCacheSize=8m" "-Xmx8m" "-Xms8m" "-jar" "/app/enclave.jar" > jvm_args.txt
 
 RUN gramine-sgx-gen-private-key \
     && gramine-manifest -Dlog_level=error -Darch_libdir=/lib/x86_64-linux-gnu java.manifest.template java.manifest \
